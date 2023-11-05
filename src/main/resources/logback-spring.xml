@@ -1,5 +1,13 @@
 <configuration>
 
+    <!-- Recommendation: place status listeners towards the the top of the configuration file
+     Enabling output of status data usually goes a long way in the diagnosis of issues with logback.
+      Note that errors can also occur post-configuration, e.g. when a disk a full or log files cannot
+      be archived due to permission errors. As such, it is highly recommended that you register a StatusListener
+     -->
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
+
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!-- encoders are assigned the type
              ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
