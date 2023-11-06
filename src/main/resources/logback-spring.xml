@@ -17,6 +17,21 @@
         </encoder>
     </appender>
 
+    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/mylog.txt</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy" >
+            <!-- rollover daily -->
+            <fileNamePattern>./logs/mylog-%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+            <!-- each file should be at most 100KB, keep 5 days worth of history, but at most 2GB -->
+            <maxFileSize>100KB</maxFileSize>
+            <maxHistory>5</maxHistory>
+            <totalSizeCap>2GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
 
     <!-- Recommendation: place status listeners towards the the top of the configuration file
      Enabling output of status data usually goes a long way in the diagnosis of issues with logback.
@@ -51,5 +66,6 @@
         <appender-ref ref="FILE" />
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE2" />
+        <appender-ref ref="ROLLING" />
     </root>
 </configuration>
