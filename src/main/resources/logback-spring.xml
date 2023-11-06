@@ -7,6 +7,13 @@
      -->
     <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
 
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>./logs/myApp.log</file>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] -%kvp- %msg%n</pattern>
+<!--            outputs the date, level, thread name, logger name, file name and line number where the log request is located, (kvp-keyvalue pairs?)the message and line separator character(s).-->
+        </encoder>
+    </appender>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!-- encoders are assigned the type
@@ -17,6 +24,7 @@
     </appender>
 
     <root level="debug">
+        <appender-ref ref="FILE" />
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>
