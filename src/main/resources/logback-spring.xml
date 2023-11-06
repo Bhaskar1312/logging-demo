@@ -1,5 +1,23 @@
 <configuration>
 
+    <appender name="FILE2" class="ch.qos.logback.core.rolling.RollingFileAppender" >
+        <file>./logs/logFile.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--daily rollover -->
+            <fileNamePattern>./archives/logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+            <!-- keep 30 days' worth of history capped at 3GB total size -->
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} -%kvp- %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
     <!-- Recommendation: place status listeners towards the the top of the configuration file
      Enabling output of status data usually goes a long way in the diagnosis of issues with logback.
       Note that errors can also occur post-configuration, e.g. when a disk a full or log files cannot
@@ -32,5 +50,6 @@
     <root level="debug">
         <appender-ref ref="FILE" />
         <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE2" />
     </root>
 </configuration>

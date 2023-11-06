@@ -16,3 +16,4 @@ default logback-spring or logback.xml file
 commit 05: print logback internal status in case of no error during build
 commit 06: file appender logback(along with console appender)
 commit 07: logging file-name with timestamp appended
+commit 08: RollingFileAppender in conjunction with a TimeBasedRollingPolicy
